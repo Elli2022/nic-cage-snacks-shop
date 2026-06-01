@@ -1,7 +1,7 @@
-/** Samma databas som i skoloriginalet — kan överstyras via Netlify/GitHub env. */
+/** Ny Realtime Database (projekt js2-mp3-elli-dany). Överstyr via VITE_FIREBASE_URL. */
 export const FIREBASE_URL =
   import.meta.env.VITE_FIREBASE_URL ||
-  "https://della-311b1-default-rtdb.europe-west1.firebasedatabase.app/.json";
+  "https://js2-mp3-elli-dany-default-rtdb.firebaseio.com/.json";
 
 export const CART_STORAGE_KEY = "cartItems";
 

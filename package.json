@@ -8,13 +8,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "legacy:original": "python3 -m http.server 5174 --directory legacy/original-2023"
+    "legacy:original": "python3 -m http.server 5174 --directory legacy/original-2023",
+    "seed:firebase": "node scripts/seed-firebase.mjs",
+    "firebase:rules": "firebase deploy --only database"
   },
   "dependencies": {
     "animejs": "^3.2.1",
     "underscore": "^1.13.6"
   },
   "devDependencies": {
+    "firebase-tools": "^13.35.1",
     "vite": "^5.4.10"
   }
 }
