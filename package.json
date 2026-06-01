@@ -1,7 +1,20 @@
 {
-  "description": "",
+  "name": "javascript-2-miniproject-3-elli-dany",
+  "private": true,
+  "version": "3.0.0",
+  "description": "Javascript 2 miniproject 3 — Nic Cage snacks (Elli & Dany)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "legacy:original": "python3 -m http.server 5174 --directory legacy/original-2023"
+  },
   "dependencies": {
     "animejs": "^3.2.1",
     "underscore": "^1.13.6"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
   }
 }

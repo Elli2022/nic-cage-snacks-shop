@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kundvagn — Javascript 2 miniproject 3</title>
+  </head>
+  <body>
+    <header class="cart-header">
+      <a href="/" class="back-link">← Tillbaka till shop</a>
+      <h1>Kassa</h1>
+      <p class="subtitle">Elli &amp; Dany</p>
+    </header>
+
+    <p id="errorMessage" class="error" role="alert"></p>
+
+    <main class="cart-layout panel">
+      <section id="items" class="cart-items"></section>
+      <p id="itemCounter" class="counter"></p>
+      <p id="totalPrice" class="total"></p>
+
+      <div id="cartActions" class="actions">
+        <button id="emptyButton" type="button" class="btn danger">Töm kundvagn</button>
+        <button id="purchaseBtn" type="button" class="btn success">Slutför köp</button>
+      </div>
+    </main>
+
+    <script type="module" src="/src/cart-page.js"></script>
+  </body>
+</html>
