@@ -25,10 +25,8 @@ jobs:
         env:
           VITE_FIREBASE_URL: ${{ secrets.VITE_FIREBASE_URL }}
 
-      - name: Deploy production
-        uses: netlify/actions/cli@v4.4.0
-        with:
-          args: deploy --prod --dir=dist
+      - name: Deploy to Netlify
+        run: npx netlify-cli@17 deploy --prod --dir=dist
         env:
           NETLIFY_SITE_ID: ${{ vars.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
