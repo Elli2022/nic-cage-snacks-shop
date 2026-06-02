@@ -1,6 +1,6 @@
 {
   "projects": {
     "default": "nic-cage-snacks",
-    "legacy": "nic-cage-mp3-elli-dany"
+    "legacy": "nic-cage-snacks-legacy"
   }
 }

@@ -2,7 +2,7 @@
 
 | Version | Beskrivning | Hur du ser den |
 |--------|-------------|----------------|
-| **v1** | Originaluppladdning | `legacy/original-2023/` eller `git checkout v1.0-original-school` — Firebase: `nic-cage-mp3-elli-dany` |
+| **v1** | Originaluppladdning | `legacy/original-2023/` eller `git checkout v1.0-original-school` — Firebase: `nic-cage-snacks-legacy` |
 | **v3** | Moderniserad Vite-app (nu) | `npm run dev` på `main` — Firebase: `nic-cage-snacks` |
 
 ## Git

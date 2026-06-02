@@ -58,9 +58,9 @@ REST mot Realtime Database (ingen Firebase SDK).
 | Version | Projekt | Kommando |
 |--------|---------|----------|
 | v3 (nu) | `nic-cage-snacks` | `npm run seed:firebase` |
-| v1 (original) | `nic-cage-mp3-elli-dany` | `npm run seed:firebase:legacy` |
+| v1 (original) | `nic-cage-snacks-legacy` | `npm run seed:firebase:legacy` |
 
-Se [docs/FIREBASE.md](./docs/FIREBASE.md). Den gamla `della-311b1`-databasen är inaktiverad; originalet i `legacy/original-2023/` använder den nya legacy-databasen.
+Se [docs/FIREBASE.md](./docs/FIREBASE.md).
 
 ## Medverkande
 
