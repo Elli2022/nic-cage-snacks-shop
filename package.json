@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "legacy:original": "python3 -m http.server 5174 --directory legacy/original-2023",
     "seed:firebase": "node scripts/seed-firebase.mjs",
-    "firebase:rules": "firebase deploy --only database"
+    "seed:firebase:legacy": "node scripts/seed-firebase.mjs https://nic-cage-mp3-elli-dany-default-rtdb.firebaseio.com/.json",
+    "firebase:rules": "firebase deploy --only database",
+    "firebase:rules:legacy": "firebase deploy --only database --project nic-cage-mp3-elli-dany"
   },
   "dependencies": {
     "animejs": "^3.2.1",

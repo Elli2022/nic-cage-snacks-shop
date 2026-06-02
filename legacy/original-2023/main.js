@@ -1,7 +1,8 @@
 import anime from "/node_modules/animejs/lib/anime.es.js";
 import _ from "/node_modules/underscore/underscore-esm.js";
+import { FIREBASE_DB_URL } from "./js/firebase-config.js";
 let chips, cookie, gum, candy, soda,data,dbdata,cartItems;
-const url = `https://della-311b1-default-rtdb.europe-west1.firebasedatabase.app/.json`;
+const url = FIREBASE_DB_URL;
 init()
 
 

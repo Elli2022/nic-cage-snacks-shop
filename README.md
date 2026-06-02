@@ -1,22 +1,24 @@
-# Javascript 2 miniproject 3 — Elli & Dany
+# Nic Cage Snacks Shop
 
-**Nic Cage favorite snacks** — skolprojekt i Javascript 2 (MP3) av Eleonora Nocentini & Danyeal Mateen.
+**Nic Cage favorite snacks** — a Firebase-backed web shop by Eleonora Nocentini & Danyeal Mateen.
 
-Webbshop med produkter från Firebase Realtime Database, kundvagn i `localStorage` och kassa som uppdaterar lagret.
+Products load from Firebase Realtime Database; the cart uses `localStorage`, and checkout updates inventory.
 
 ## Live (Netlify)
 
-<https://js2-mp3-elli-dany.netlify.app>
+<https://nic-cage-snacks.netlify.app>
 
-## Tidigare version
+**Repository:** [Elli2022/nic-cage-snacks-shop](https://github.com/Elli2022/nic-cage-snacks-shop)
 
-Originalet från första inlämningen finns i `legacy/original-2023/` och via git-taggen `v1.0-original-school`.
+## Previous version
+
+The first submission lives in `legacy/original-2023/` and git tag `v1.0-original-school`.
 
 ```bash
 npm run legacy:original   # http://localhost:5174
 ```
 
-Se [VERSIONS.md](./VERSIONS.md).
+See [VERSIONS.md](./VERSIONS.md).
 
 ## Utveckling
 
@@ -45,20 +47,20 @@ Engångsinställning i GitHub → **Settings → Secrets and variables → Actio
 |--------|--------|
 | `NETLIFY_SITE_ID` | `3a45362a-d407-423d-8737-287d74a95c91` |
 | `NETLIFY_AUTH_TOKEN` | Skapa under [Netlify → User settings → Applications](https://app.netlify.com/user/applications) |
-| `VITE_FIREBASE_URL` | (valfritt) Ny databas-URL om du byter Firebase-projekt |
+| `VITE_FIREBASE_URL` | `https://nic-cage-snacks-default-rtdb.firebaseio.com/.json` |
 
-Alternativt: koppla repot direkt i [Netlify → js2-mp3-elli-dany → Link repository](https://app.netlify.com/projects/js2-mp3-elli-dany/link).
+Alternativt: koppla repot direkt i [Netlify → nic-cage-snacks → Link repository](https://app.netlify.com/projects/nic-cage-snacks/link).
 
 ## Firebase
 
-Appen använder **Firebase Realtime Database** via REST (samma URL som i originalet), inte Firebase SDK.
+REST mot Realtime Database (ingen Firebase SDK).
 
-- URL i kod: `src/lib/constants.js` (miljövariabel `VITE_FIREBASE_URL` om satt)
-- Originalet pekade på `della-311b1-default-rtdb` — den databasen är **inaktiverad** hos Firebase just nu, så shoppen visar anslutningsfel tills du:
-  1. **Återaktiverar** databasen i [Firebase Console](https://console.firebase.google.com/), eller
-  2. Skapar ett **nytt** Realtime Database-projekt, lägger in produktdata (samma struktur som tidigare) och sätter `VITE_FIREBASE_URL` i Netlify + GitHub secrets.
+| Version | Projekt | Kommando |
+|--------|---------|----------|
+| v3 (nu) | `nic-cage-snacks` | `npm run seed:firebase` |
+| v1 (original) | `nic-cage-mp3-elli-dany` | `npm run seed:firebase:legacy` |
 
-Jag har **inte** skapat ett nytt Firebase-projekt åt dig — det kräver ditt Google-/skolkonto.
+Se [docs/FIREBASE.md](./docs/FIREBASE.md). Den gamla `della-311b1`-databasen är inaktiverad; originalet i `legacy/original-2023/` använder den nya legacy-databasen.
 
 ## Medverkande
 

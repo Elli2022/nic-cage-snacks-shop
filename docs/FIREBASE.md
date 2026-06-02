@@ -1,11 +1,15 @@
 # Firebase — Nic Cage snacks
 
-## Projekt
+## Översikt
 
-- **Firebase-projekt:** `js2-mp3-elli-dany`
-- **Realtime Database-URL:** `https://js2-mp3-elli-dany-default-rtdb.firebaseio.com`
+| Version | Firebase-projekt | Databas-URL |
+|--------|------------------|-------------|
+| **v3** (modern, Netlify) | `nic-cage-snacks` | `https://nic-cage-snacks-default-rtdb.firebaseio.com/.json` |
+| **v1** (original i `legacy/original-2023/`) | `nic-cage-mp3-elli-dany` | `https://nic-cage-mp3-elli-dany-default-rtdb.firebaseio.com/.json` |
 
-## Produkter (samma som Dany/originalet)
+Den gamla skol-databasen **`della-311b1`** är inaktiverad. Projektet **`js2-mp3-elli-dany`** är ersatt av **`nic-cage-snacks`**.
+
+## Produkter
 
 | Index | Produkt |
 |------|---------|
@@ -17,27 +21,20 @@
 
 Seed-data: [`data/seed-products.json`](../data/seed-products.json)
 
-## Fyll databasen (efter att regler tillåter läs/skriv)
+## Fyll databasen
 
 ```bash
-npm run seed:firebase
+npm run seed:firebase          # v3 (modern)
+npm run seed:firebase:legacy   # v1 (original)
 ```
 
-## Regler för skolprojekt (test)
+## Regler (skolprojekt / test)
 
-I [Firebase Console → Realtime Database → Rules](https://console.firebase.google.com/project/js2-mp3-elli-dany/database/js2-mp3-elli-dany-default-rtdb/rules):
-
-```json
-{
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
-}
+```bash
+npm run firebase:rules         # v3
+npm run firebase:rules:legacy  # v1
 ```
 
-Klicka **Publish**. Om databasen skapades i *locked mode*, välj **Start in test mode** vid skapande eller publicera reglerna ovan.
+## Miljövariabel (v3)
 
-## Deploy
-
-Sätt `VITE_FIREBASE_URL` i Netlify (Site settings → Environment variables) till samma URL som ovan.
+Sätt `VITE_FIREBASE_URL` i Netlify/GitHub om du byter databas.

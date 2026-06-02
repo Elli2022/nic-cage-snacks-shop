@@ -1,5 +1,5 @@
 import { fetchProducts, saveProducts } from "./lib/api.js";
-import { applyPurchaseToStock } from "./lib/inventory.js";
+import { restoreStockFromCart } from "./lib/inventory.js";
 import { cartTotals, clearCart, readCart } from "./lib/cart.js";
 import "./styles/cart.css";
 
@@ -49,10 +49,33 @@ function render() {
   setActionsVisible(true);
 }
 
-elements.emptyButton.addEventListener("click", () => {
-  cartItems = [];
-  clearCart();
-  render();
+elements.emptyButton.addEventListener("click", async () => {
+  if (cartItems.length === 0) {
+    elements.itemCounter.textContent = "Kundvagnen är redan tom.";
+    return;
+  }
+
+  const itemsToRestore = [...cartItems];
+
+  try {
+    elements.errorMessage.textContent = "";
+    elements.emptyButton.disabled = true;
+
+    const products = await fetchProducts();
+    const restored = restoreStockFromCart(products, itemsToRestore);
+    await saveProducts(restored);
+
+    cartItems = [];
+    clearCart();
+    elements.itemCounter.textContent =
+      "Kundvagnen tömd. Lagret i Firebase är återställt.";
+    render();
+  } catch {
+    elements.errorMessage.textContent =
+      "Kunde inte återställa lagret. Försök igen.";
+  } finally {
+    elements.emptyButton.disabled = false;
+  }
 });
 
 elements.purchaseBtn.addEventListener("click", async () => {
@@ -63,10 +86,7 @@ elements.purchaseBtn.addEventListener("click", async () => {
 
   try {
     elements.errorMessage.textContent = "";
-    const products = await fetchProducts();
-    const updated = applyPurchaseToStock(products, cartItems);
-    await saveProducts(updated);
-
+    // Lagret minskades redan när varor lades i kundvagnen på shop-sidan.
     cartItems = [];
     clearCart();
     elements.items.innerHTML = "";

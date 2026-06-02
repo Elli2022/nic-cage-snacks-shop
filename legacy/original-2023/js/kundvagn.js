@@ -1,5 +1,6 @@
-// import { postProducts } from "../main.js";
-let url = `https://della-311b1-default-rtdb.europe-west1.firebasedatabase.app/.json`;
+import { FIREBASE_DB_ROOT, FIREBASE_DB_URL } from "./firebase-config.js";
+
+let url = FIREBASE_DB_URL;
 getProducts();
 let dbdata;
 let cartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -37,8 +38,7 @@ emptyButton.addEventListener("click", () => {
     items.innerText = "no products in the cart";
     totalPrice.innerText = "";
     document.getElementById("itemCounter").innerText = "Your cart is emptied!";
-    updateStock();
-    console.log(cartItems);
+    cartItems = null;
   }
 
   window.onpageshow = function (event) {
@@ -103,7 +103,7 @@ purchaseBtn.addEventListener("click", () => {
 
 async function postProducts() {
   await getProducts()
-  const url = `https://della-311b1-default-rtdb.europe-west1.firebasedatabase.app/.json`;
+  const url = FIREBASE_DB_URL;
   let stock = [0, 0, 0, 0, 0]
   stock[0] = dbdata[0].stock;
   stock[1] = dbdata[1].stock;
@@ -145,31 +145,31 @@ async function postProducts() {
         name: "Candy Skittles",
         price: 10,
         stock: stock[0],
-        url: "https://www.skittles.com/sites/g/files/fnmzdf586/files/migrate-product-files/bam8afcev37jvz2mfpnk.png"
+        url: "/images/products/candy.png"
       },
       {
         name: "Chips Estrella",
         price: 10,
         stock: stock[1],
-        url: "https://swedishfoodshop.com/pub/media/catalog/product/cache/577ee1db3aa78a031ff4355fb63b3264/e/s/estrellavinag.jpg"
+        url: "/images/products/chips.jpg"
       },
       {
         name: "Cookies Marabou",
         price: 10,
         stock: stock[2],
-        "url": "https://static.mathem.se/shared/images/products/large/07622300589882_C1N1.jpeg"
+        url: "/images/products/cookies.jpg"
       },
       {
         name: "Gum Stimorol",
         price: 10,
         stock: stock[3],
-        "url": "https://static.mathem.se/shared/images/products/large/05704592006116_c1n1.jpeg.jpg"
+        url: "/images/products/gum.jpg"
       },
       {
         name: "Soda Pepsi",
         price: 10,
         stock: stock[4],
-        "url": "https://res.cloudinary.com/coopsverige/images/e_sharpen,f_auto,fl_clip,fl_progressive,q_90,c_lpad,g_center,h_330,w_330/v1647879396/cloud/249826/Pepsi.jpg"
+        url: "/images/products/soda.jpg"
       }
     ];
 
@@ -189,7 +189,7 @@ async function postProducts() {
 }
 
 async function updateStock(product, newStock) {
-  const patchUrl = `https://della-311b1-default-rtdb.europe-west1.firebasedatabase.app/${product}.json`;
+  const patchUrl = `${FIREBASE_DB_ROOT}/${product}.json`;
 
   const init = {
     method: "PATCH",

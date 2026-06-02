@@ -2,11 +2,15 @@ import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
+const DEFAULT_FIREBASE_URL =
+  "https://nic-cage-snacks-default-rtdb.firebaseio.com/.json";
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const databaseUrl =
   process.argv[2] ||
   process.env.VITE_FIREBASE_URL ||
-  process.env.FIREBASE_DATABASE_URL;
+  process.env.FIREBASE_DATABASE_URL ||
+  DEFAULT_FIREBASE_URL;
 
 if (!databaseUrl) {
   console.error(

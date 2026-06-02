@@ -1,7 +1,7 @@
 import anime from "animejs/lib/anime.es.js";
 import { sortBy } from "underscore";
-import { fetchProducts } from "./lib/api.js";
-import { buildStockMap, remainingStock } from "./lib/inventory.js";
+import { fetchProducts, saveProducts } from "./lib/api.js";
+import { buildStockMap, decrementStock } from "./lib/inventory.js";
 import { cartTotals, readCart, writeCart } from "./lib/cart.js";
 import { PRODUCT_SLUGS } from "./lib/constants.js";
 import "./styles/shop.css";
@@ -40,8 +40,7 @@ function renderProducts() {
 
   elements.productGrid.innerHTML = sorted
     .map((product, index) => {
-      const inCart = reserved[product.name] ?? 0;
-      const left = remainingStock(product, inCart);
+      const left = Number(product.stock);
       const slug = slugForIndex(index);
 
       return `
@@ -59,17 +58,29 @@ function renderProducts() {
     .join("");
 
   elements.productGrid.querySelectorAll("button[data-name]").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       const name = button.dataset.name;
       const product = products.find((item) => item.name === name);
-      if (!product) {
+      if (!product || Number(product.stock) <= 0) {
         return;
       }
 
-      cartItems = [...cartItems, product];
-      writeCart(cartItems);
-      renderSummary();
-      renderProducts();
+      button.disabled = true;
+
+      try {
+        elements.errorMessage.textContent = "";
+        const updated = decrementStock(products, product.name);
+        await saveProducts(updated);
+        products = updated;
+        cartItems = [...cartItems, product];
+        writeCart(cartItems);
+        renderSummary();
+        renderProducts();
+      } catch {
+        elements.errorMessage.textContent =
+          "Kunde inte uppdatera lagret. Försök igen.";
+        button.disabled = Number(product.stock) <= 0;
+      }
     });
   });
 }
